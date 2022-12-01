@@ -22,7 +22,7 @@ const database = {
     },
     {
         id: 3,
-        name: "Flaming Lips",
+        name: "Tom Waits",
         numOfMembers: 99,
         genre: "Grunge",
         formed: 1990
@@ -58,7 +58,7 @@ booking : [{
     id: 2,
     date: "12/22/2022",
     bandid: 3,
-    venueid: 1
+    venueid: 3
 }, {
     id: 3,
     date: "06/01/2023",

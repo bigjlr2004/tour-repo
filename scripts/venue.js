@@ -4,8 +4,6 @@ const venues = getVenues()
 const bands = getBands()
 const bookings = getBookings()
 
-
-
 document.addEventListener(
     "click", // this is the type of event
     (clickEvent) => {
@@ -22,10 +20,17 @@ document.addEventListener(
             //now that we have the primary key for the venue we iterate through the 
             //venues database to get the correct venue
             for (const venue of venues) {
+
                 if(venue.id === parseInt(venuePrimary)) {
+
+                    //pass matched venue id into matchBooking function
+
                     const bookingMatches = matchBooking(venue.id)
-                    const bandsString = bookedBands(venue, bookingMatches)
-                    window.alert(`${venue.name}  ${bandsString} `)
+                        //pass venue specific bookings into a function to find the band for that booking
+                        //
+
+                    const bandsString = bookedBands(bookingMatches)
+                    window.alert(`${venue.name} ${bandsString} `)
                 }
 
             }
@@ -38,36 +43,27 @@ document.addEventListener(
 const matchBooking = (venueid) => {
     //declare an empty array to store matching bookings
     const venueBookings = []
+    //iterate through the bookings database
     for (const booking of bookings) {
-        
+        //if the bookings venue id matches the venueid that was passed 
+        //then add that booking to the array venueBookings
         if(booking.venueid === venueid) {
             venueBookings.push(booking)
         }
-    }
+    }//return filtered bookings that matched the venue id that was passed in
 return venueBookings
 }
 
- export const allVenues = () => {
-    let html = `<ul>`
-
-    for (const venue of venues) {
-        html += `<li id="venue--${venue.id}">${venue.name}</li>`
-    }
-
-    html += "</ul>"
-
-    return html
-}
-
+ 
 // Define a function that builds a string of bandName names. Needs a paramter for bookings array.
-const bookedBands = (matchedVenue,matchedBookings) => {
+const bookedBands = (matchedBookings) => {
     // Define an empty string that will get appended with matching cities
     let bandNames = ""
     
-
-     if (matchedBookings.length  === 1) {
+    bandNames = "Bookings:"
+    
         for (const booking of matchedBookings) {
-            bandNames = "Bookings:"
+           
         for (const bandName of bands) {
             if (bandName.id === booking.bandid) {
                 // Add the name of the matching city to the string of city names
@@ -78,22 +74,16 @@ const bookedBands = (matchedVenue,matchedBookings) => {
         
     }
     return bandNames
-}else {
-    bandNames ="Bookings:"
-    for (const booking of matchedBookings) {
+}
 
-        for (const bandName of bands) {
-            if (bandName.id === booking.bandid) {
-                // Add the name of the matching bandName to the string of bandName names
-                bandNames += `\n${bandName.name} on ${booking.date}`
-            }
-            
-        }
-       // bandNames += ` and `
-       // After the loop is done, return the string
-        
+export const allVenues = () => {
+    let html = `<ul>`
+
+    for (const venue of venues) {
+        html += `<li id="venue--${venue.id}">${venue.name}</li>`
     }
-    // return bandNames = bandName.substring(0,bandName.length -4)
-    return bandNames 
-}   
+
+    html += "</ul>"
+
+    return html
 }
