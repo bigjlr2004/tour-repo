@@ -7,13 +7,19 @@ const bookings = getBookings()
 document.addEventListener(
     "click", // this is the type of event
     (clickEvent) => {
-        //variable fo the click event target
+        //variable for the click event target
         const itemClicked = clickEvent.target
+        //logic checking to see if the itemClicked on starts with band
         if (itemClicked.id.startsWith("band")) {
+            //if yes split the element id to pull out the bands Primary ID
             const [,bandPrimary] = itemClicked.id.split("--")
+            //iterate through the bands database
             for (const band of bands) {
+                //logic to test to see if the band id matches the element from the click event
                 if(band.id === parseInt(bandPrimary)){
+                    //invoke function to filter bookings by band
                     let bookingMatches = matchBooking(band.id)
+
                     let matchedVenues = bookedVenues(bookingMatches)
                     window.alert(`${band.name} ${matchedVenues}`)
                 }
@@ -25,9 +31,13 @@ document.addEventListener(
 const matchBooking = (bandid) => {
     //declare an empty array to store matching bookings
     const bandBookings = []
+    //iterate through each of the bookings
     for (const booking of bookings) {
+        //on each iteration of bookings check the band id for the boooking with 
+        //the band id passed in that matches the HTML element
         
         if(booking.bandid === bandid) {
+            
             bandBookings.push(booking)
         }
     }
