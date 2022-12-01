@@ -64,10 +64,10 @@ const bookedBands = (matchedBookings) => {
     
         for (const booking of matchedBookings) {
            
-        for (const bandName of bands) {
-            if (bandName.id === booking.bandid) {
+        for (const band of bands) {
+            if (band.id === booking.bandid) {
                 // Add the name of the matching city to the string of city names
-                bandNames += `\n${bandName.name} on ${booking.date}`
+                bandNames += `\n${band.name} on ${booking.date}`
             }
         }
        // After the loop is done, return the string
