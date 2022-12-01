@@ -27,7 +27,7 @@ return foundBand
 }
 
 const findVenue = (booking, venues) => {
-    let foundVenue = []
+    let foundVenue = ""
 
     for (const venue of venues) {
         if (booking.venueid === venue.id) {
@@ -46,11 +46,44 @@ export const displayBookings = () => {
         const band = findBand(booking, bands)
         const foundVenue = findVenue(booking, venues)
 
-        html += `<li>${band.name} is playing at ${foundVenue.name} on ${booking.date}</li>`
+        html += `<li id="booking--${band.id}">${band.name} is playing at ${foundVenue.name} on ${booking.date}</li>`
     }
 
     html += "</ul>"
 
     return html
 }
+
+document.addEventListener(
+    "click", // this is the type of event
+    (clickEvent) => {
+        //the target is the most specific HTML element that was clicked by the user
+        const itemClicked = clickEvent.target
+        //check to see if the user clicked on an element that starts with product
+
+        if (itemClicked.id.startsWith("booking")) {
+            //extract the primary key for the product from the html element that was clicked on
+            const [,primaryKey] = itemClicked.id.split("--")
+            //now that we have thew primary key of the product that
+            //was clicked on we need to iterate through the products array
+            //and find the matching product and price
+            for (const band of bands) {
+                
+           
+            
+                if (band.id === parseInt(primaryKey)){
+            window.alert
+            (`${band.name}
+             ${band.genre}
+             Formed in ${band.formed}
+             ${band.numOfMembers} members`
+             )
+            }  
+            }
+        }
+
+        }
+    
+)
+
 
