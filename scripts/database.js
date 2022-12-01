@@ -46,41 +46,54 @@ venue: [{
     name: "Alice in Wonderlands Ampitheater",
     address: "Upside Down Street",
     maxOccupancy: 999999,
-    squareFootage: 00001
+    squareFootage: 1
 }],
-bookings : [{
+booking : [{
     id: 1,
-    date: 12/11/2022,
+    date: "12/11/2022",
     bandid: 1,
     venueid: 2
 },
 {
     id: 2,
-    date: 12/22/2022,
+    date: "12/22/2022",
     bandid: 3,
     venueid: 1
 }, {
     id: 3,
-    date: 06/01/2023,
+    date: "06/01/2023",
     bandid: 2,
     venueid: 3
 },{
     id: 4,
-    date: 12/11/2022,
+    date: "12/11/2022",
     bandid: 3,
     venueid: 1
 },
 {
     id: 5,
-    date: 12/2/2022,
+    date: "12/2/2022",
     bandid: 2,
     venueid: 1
 }, {
     id: 6,
-    date: 07/13/2023,
+    date: "07/13/2023",
     bandid: 1,
     venueid: 1
 }
+
 ]
 
+}
+
+export const getBands = () => {
+    return database.band.map(bands => ({...bands}))
+}
+
+export const getVenues = () => {
+    return database.venue.map(venues => ({...venues}))
+}
+
+export const getBookings = () => {
+    return database.booking.map(bookings => ({...bookings}))
 }
