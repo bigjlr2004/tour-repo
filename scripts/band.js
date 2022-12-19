@@ -1,8 +1,18 @@
-import { getVenues, getBands, getBookings } from "./database.js"
+import { getVenues, getBands, getBookings, getMembers } from "./database.js"
 
 const venues = getVenues()
 const bands = getBands()
-const bookings = getBookings()
+const unsortedBookings = getBookings()
+const members = getMembers()
+
+const sortByDate = (arr) => {
+    const sorter = (a,b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+   return arr.sort(sorter);
+}
+const bookings = sortByDate(unsortedBookings)
+
 
 document.addEventListener(
     "click", // this is the type of event
@@ -21,7 +31,7 @@ document.addEventListener(
                     let bookingMatches = matchBooking(band.id)
 
                     let matchedVenues = bookedVenues(bookingMatches)
-                    window.alert(`${band.name} ${matchedVenues}`)
+                    window.alert(`\n${bandMembers(band.id)} \n${band.name} ${matchedVenues}`)
                 }
             }
 
@@ -62,6 +72,15 @@ const bookedVenues = (matchedBookings) => {
      return venueString
      }
 
+     const bandMembers = (bandId) => {
+        let bandString = ""
+        for(const member of members)
+            if(member.bandId === bandId) {
+                bandString += `${member.firstName} ${member.lastName} (${member.role})\n`
+        }
+        return bandString
+     }
+
 
  export const allBands = () => {
     let html = `<ul>`
@@ -74,4 +93,7 @@ const bookedVenues = (matchedBookings) => {
 
     return html
 }
+
+
+
 

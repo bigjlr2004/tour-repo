@@ -28,6 +28,24 @@ const database = {
         formed: 1990
     }    
 ],
+bandMembers: [
+    {id: 1, firstName: "John", lastName: "Roberts", yearBorn: 1978, role: "trumpet", bandId: 3},
+    {id: 2, firstName: "Kurt", lastName: "Kobain", yearBorn: 1977, role: "bass", bandId: 1},
+    {id: 1, firstName: "Janis", lastName: "Joplin", yearBorn: 1943, role: "lead vocals", bandId: 2},
+    {id: 1, firstName: "John", lastName: "Prine", yearBorn: 1934, role: "lead vocals", bandId: 3},
+    {id: 1, firstName: "Dave", lastName: "Mathews", yearBorn: 1970, role: "lead vocals", bandId: 1},
+    {id: 1, firstName: "Miles", lastName: "Davis", yearBorn: 1978, role: "trumpet", bandId: 2},
+    {id: 1, firstName: "Sonny", lastName: "Rollins", yearBorn: 1963, role: "drums", bandId: 3},
+    {id: 1, firstName: "Fred", lastName: "Durst", yearBorn: 1978, role: "bass guitar", bandId: 3},
+    {id: 1, firstName: "Jimmy", lastName: "Hendrix", yearBorn: 1969, role: "bass guitar", bandId: 1},
+    {id: 1, firstName: "Jimmy", lastName: "Page", yearBorn: 1943, role: "guitar", bandId: 3},
+    {id: 1, firstName: "Eddie", lastName: "Murphy", yearBorn: 1954, role: "drums", bandId: 1},
+    {id: 1, firstName: "John", lastName: "Bonham", yearBorn: 1952, role: "drums", bandId: 2},
+    {id: 1, firstName: "Mazzy", lastName: "Star", yearBorn: 1970, role: "piano", bandId: 3},
+    {id: 1, firstName: "Donald", lastName: "Sutherland", yearBorn: 1945, role: "saxaphone", bandId: 2},
+    {id: 1, firstName: "Dizzy", lastName: "Gillespie", yearBorn: 1978, role: "saxaphone", bandId: 1},
+    {id: 1, firstName: "Fats", lastName: "Navarro", yearBorn: 1945, role: "trumpet", bandId: 1}    
+],
 venue: [{
     id: 1,
     name: "Melting Pot",
@@ -96,4 +114,8 @@ export const getVenues = () => {
 
 export const getBookings = () => {
     return database.booking.map(bookings => ({...bookings}))
+}
+
+export const getMembers = () => {
+    return database.bandMembers.map(members => ({...members}))
 }

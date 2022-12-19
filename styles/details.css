@@ -5,7 +5,7 @@
 }
 
 .top_row   {
-    flex-basis: 24%;
+    flex-basis: 50%;
     margin: 0 2rem;
     padding: 1rem;
     border: 1px dotted goldenrod;
